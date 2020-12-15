@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<title>Input data</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+<script>
+function getValue(id){
+  var text = document.getElementById(id).value;
+  var requestOptions = {
+    method: 'POST',
+    redirect: 'follow'
+  };
+  // alert(text);
+  fetch("https://us-central1-bot-line-7907b.cloudfunctions.net/LineBotBroadcast?text="+text, requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+}
+
+</script>
+</head>
+<body>
+  <!-- <form onsubmit="return getValue('commands')">
+    กรอกข้อมูล:
+    <input type="text" name="commands" size="60" id="commands"/>
+    <input type="submit" value="ยืนยันการส่งข้อมูล">
+</form> -->
+
+<div class="container">
+  <h2>Form control: input</h2>
+  <p>กรอกรายละเอียด:</p>
+  <p><form onsubmit="return getValue('txt')">
+    <div class="form-group">
+      <label for="txt">ข้อมูล:</label>
+      <input type="textarea" class="form-control" id="txt" name="data">
+      <!-- <textarea id="txt" name="data" rows="4" cols="50"></textarea> -->
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <button type="submit" onclick="window.location='index.html'" class="btn btn-primary">กลับไปหน้าแรก </button>
+</div>
+
+</body>
+</html>
